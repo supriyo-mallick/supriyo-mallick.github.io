@@ -3,7 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
-import { AUTHOR_NAME, GITHUB_URL, SITE_DESCRIPTION, SITE_TAGLINE, SITE_TITLE } from '../consts';
+import { AUTHOR_NAME, GITHUB_URL, LINKEDIN_URL, SITE_DESCRIPTION, SITE_TAGLINE, SITE_TITLE } from '../consts';
 import { getPosts } from '../utils/posts';
 
 const latest = (await getPosts()).slice(0, 6);
@@ -23,7 +23,7 @@ const schema = [
 		'@type': 'Person',
 		name: AUTHOR_NAME,
 		url: new URL('/about/', Astro.site).href,
-		sameAs: [GITHUB_URL],
+		sameAs: [LINKEDIN_URL, GITHUB_URL],
 	},
 ];
 ---

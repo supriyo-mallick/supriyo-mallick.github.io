@@ -2,7 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
-import { AUTHOR_NAME, GITHUB_URL, SITE_TITLE } from '../consts';
+import { AUTHOR_NAME, GITHUB_URL, LINKEDIN_URL, SITE_TITLE } from '../consts';
 
 // An About page with real details about you helps Google trust the site (E-E-A-T).
 const schema = [
@@ -12,9 +12,10 @@ const schema = [
 		mainEntity: {
 			'@type': 'Person',
 			name: AUTHOR_NAME,
-			jobTitle: 'SEO & Organic Marketing Consultant',
+			jobTitle: 'SEO Practitioner',
 			url: new URL('/about/', Astro.site).href,
-			sameAs: [GITHUB_URL],
+			knowsAbout: ['Search Engine Optimization', 'Organic Marketing', 'Python', 'Google Apps Script', 'Automation'],
+			sameAs: [LINKEDIN_URL, GITHUB_URL],
 		},
 	},
 ];
@@ -25,7 +26,7 @@ const schema = [
 	<head>
 		<BaseHead
 			title={`About ${AUTHOR_NAME}`}
-			description={`${AUTHOR_NAME} writes ${SITE_TITLE}: hands-on SEO, organic marketing and automation experiments with Python, APIs and Google Apps Script.`}
+			description={`${AUTHOR_NAME} is an SEO practitioner with 2.5+ years of experience who writes ${SITE_TITLE}: hands-on SEO, organic marketing and automation experiments.`}
 			schema={schema}
 		/>
 	</head>
@@ -34,23 +35,32 @@ const schema = [
 		<main>
 			<h1>About me</h1>
 			<p>
-				Hi, I’m {AUTHOR_NAME}. I work on SEO and organic marketing, and I love automating the boring
-				parts of the job with Python, APIs and Google Apps Script.
+				Hi, I’m {AUTHOR_NAME}, an SEO practitioner with <strong>2.5+ years of hands-on experience</strong>
+				and an enthusiastic learner at heart.
 			</p>
-			<!-- TODO: Replace the bracketed parts with your own story. Real, specific details rank better than generic text. -->
 			<p>
-				[Write 2–3 sentences about your experience: how long you’ve done SEO, the kinds of sites or
-				clients you’ve worked with, and a result you’re proud of.]
+				I love challenges, automation and ideas that help people. Whenever I run into a boring,
+				repetitive task, my first thought is: <em>can I make a computer do this instead?</em> That
+				question usually leads me to Python, an API or a few lines of Google Apps Script, and to a
+				solution that saves hours.
 			</p>
 			<h2>Why this blog exists</h2>
 			<p>
-				{SITE_TITLE} is my public lab notebook. I test scripts, tools and tactics, then write up exactly
-				what I did and what happened, so you can copy what works and skip what doesn’t.
+				I love to learn and I love to teach. {SITE_TITLE} is my public lab notebook: I try new
+				experiments in SEO, organic marketing and automation, then write up exactly what I did, what
+				broke and what worked, so you can copy the wins and skip the mistakes.
 			</p>
+			<h2>What you’ll find here</h2>
+			<ul>
+				<li>Python and API scripts that automate tedious work</li>
+				<li>Google Apps Script tricks for Sheets, Gmail, Docs and Forms</li>
+				<li>Browser extensions and workflows I use for SEO</li>
+				<li>SEO and organic marketing experiments, with real results</li>
+			</ul>
 			<h2>Get in touch</h2>
 			<p>
-				You can find my code on <a href={GITHUB_URL}>GitHub</a>.
-				<!-- TODO: add your email or LinkedIn here when you're ready to take consulting work. -->
+				Connect with me on <a href={LINKEDIN_URL} rel="me noopener">LinkedIn</a> or see my code on
+				<a href={GITHUB_URL} rel="me noopener">GitHub</a>.
 			</p>
 		</main>
 		<Footer />

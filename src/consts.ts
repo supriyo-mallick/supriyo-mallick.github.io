@@ -9,3 +9,4 @@ export const SITE_DESCRIPTION =
 export const AUTHOR_NAME = 'Supriyo Mallick';
 export const AUTHOR_URL = '/about/';
 export const GITHUB_URL = 'https://github.com/supriyo-mallick';
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/s-mallick';

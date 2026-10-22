@@ -1,5 +1,5 @@
 ---
-import { AUTHOR_NAME, GITHUB_URL, SITE_TITLE } from '../consts';
+import { AUTHOR_NAME, GITHUB_URL, LINKEDIN_URL, SITE_TITLE } from '../consts';
 
 const today = new Date();
 ---
@@ -10,6 +10,7 @@ const today = new Date();
 		<a href="/about/">About</a>
 		<a href="/blog/">All posts</a>
 		<a href="/rss.xml">RSS</a>
+		<a href={LINKEDIN_URL} target="_blank" rel="me noopener">LinkedIn</a>
 		<a href={GITHUB_URL} target="_blank" rel="me noopener">GitHub</a>
 	</div>
 </footer>

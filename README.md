@@ -1,4 +1,4 @@
-# Supriyo’s Search Lab
+# Supriyo’s Test Lab
 
 SEO, Organic Marketing & Automation Experiments, built with [Astro](https://astro.build) and published free on GitHub Pages.
 

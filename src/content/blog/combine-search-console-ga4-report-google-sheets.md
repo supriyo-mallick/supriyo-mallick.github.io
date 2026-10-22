@@ -274,7 +274,7 @@ We're preparing to launch the Performance Report, plus **three more tools**, as 
 
 The add-on is currently going through Google's verification process. **Until it's live, use the Apps Script version above**: it's the same Performance Report, just with a one-time setup per sheet.
 
-**Want to know when it launches?** Subscribe to **Search Lab by Supriyo Mallick** on YouTube or email [searchlab.supriyo@gmail.com](mailto:searchlab.supriyo@gmail.com). Questions, bugs and feature requests are welcome too.
+**Want to know when it launches?** Subscribe to my YouTube channel or email [searchlab.supriyo@gmail.com](mailto:searchlab.supriyo@gmail.com). Questions, bugs and feature requests are welcome too.
 
 ---
 

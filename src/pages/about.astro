@@ -1,0 +1,58 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { AUTHOR_NAME, GITHUB_URL, SITE_TITLE } from '../consts';
+
+// An About page with real details about you helps Google trust the site (E-E-A-T).
+const schema = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'ProfilePage',
+		mainEntity: {
+			'@type': 'Person',
+			name: AUTHOR_NAME,
+			jobTitle: 'SEO & Organic Marketing Consultant',
+			url: new URL('/about/', Astro.site).href,
+			sameAs: [GITHUB_URL],
+		},
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title={`About ${AUTHOR_NAME}`}
+			description={`${AUTHOR_NAME} writes ${SITE_TITLE}: hands-on SEO, organic marketing and automation experiments with Python, APIs and Google Apps Script.`}
+			schema={schema}
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>About me</h1>
+			<p>
+				Hi, I’m {AUTHOR_NAME}. I work on SEO and organic marketing, and I love automating the boring
+				parts of the job with Python, APIs and Google Apps Script.
+			</p>
+			<!-- TODO: Replace the bracketed parts with your own story. Real, specific details rank better than generic text. -->
+			<p>
+				[Write 2–3 sentences about your experience: how long you’ve done SEO, the kinds of sites or
+				clients you’ve worked with, and a result you’re proud of.]
+			</p>
+			<h2>Why this blog exists</h2>
+			<p>
+				{SITE_TITLE} is my public lab notebook. I test scripts, tools and tactics, then write up exactly
+				what I did and what happened, so you can copy what works and skip what doesn’t.
+			</p>
+			<h2>Get in touch</h2>
+			<p>
+				You can find my code on <a href={GITHUB_URL}>GitHub</a>.
+				<!-- TODO: add your email or LinkedIn here when you're ready to take consulting work. -->
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>

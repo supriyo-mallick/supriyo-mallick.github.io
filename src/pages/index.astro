@@ -1,0 +1,113 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { AUTHOR_NAME, GITHUB_URL, SITE_DESCRIPTION, SITE_TAGLINE, SITE_TITLE } from '../consts';
+import { getPosts } from '../utils/posts';
+
+const latest = (await getPosts()).slice(0, 6);
+
+// Tells Google the site name to show in search results.
+const schema = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: SITE_TITLE,
+		alternateName: 'Supriyo Mallick',
+		url: new URL('/', Astro.site).href,
+		description: SITE_DESCRIPTION,
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'Person',
+		name: AUTHOR_NAME,
+		url: new URL('/about/', Astro.site).href,
+		sameAs: [GITHUB_URL],
+	},
+];
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} schema={schema} />
+		<style>
+			.hero {
+				padding: 2em 0 1em;
+			}
+			.hero h1 {
+				margin-bottom: 0.25em;
+			}
+			.tagline {
+				font-size: 1.25em;
+				color: rgb(var(--gray));
+				margin-top: 0;
+			}
+			.topics {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+				gap: 1em;
+				padding: 0;
+				list-style: none;
+			}
+			.topics li {
+				padding: 1em;
+				border-radius: 12px;
+				background: color-mix(in srgb, var(--accent) 6%, white);
+			}
+			.topics strong {
+				display: block;
+				margin-bottom: 0.25em;
+			}
+			.latest {
+				padding-left: 1.2em;
+			}
+			.latest li {
+				margin-bottom: 0.5em;
+			}
+			.latest .date {
+				color: rgb(var(--gray));
+				font-size: 0.9em;
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero">
+				<h1>{SITE_TITLE}</h1>
+				<p class="tagline">{SITE_TAGLINE}</p>
+				<p>
+					I test tools, scripts and growth tactics so you don’t have to. Every post is a real
+					experiment: working code, the steps I took, what broke, and what actually moved the needle.
+				</p>
+			</section>
+
+			<h2>What you’ll find here</h2>
+			<ul class="topics">
+				<li><strong>Python &amp; API automation</strong>Scripts that turn hours of manual work into seconds.</li>
+				<li><strong>Google Apps Script</strong>Sheets, Gmail, Docs and Forms doing the boring jobs for you.</li>
+				<li><strong>Browser extensions for SEO</strong>The extensions I use for audits, research and reporting.</li>
+				<li><strong>SEO &amp; organic marketing</strong>Experiments and case studies on ranking without ads.</li>
+			</ul>
+
+			<h2>Latest posts</h2>
+			{latest.length === 0 ? (
+				<p>First experiments are on the way.</p>
+			) : (
+				<ul class="latest">
+					{latest.map((post) => (
+						<li>
+							<a href={`/blog/${post.id}/`}>{post.data.title}</a>
+							<br />
+							<span class="date"><FormattedDate date={post.data.pubDate} /></span>
+						</li>
+					))}
+				</ul>
+			)}
+			<p><a href="/blog/">See all posts →</a></p>
+		</main>
+		<Footer />
+	</body>
+</html>

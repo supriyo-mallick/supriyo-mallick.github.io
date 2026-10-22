@@ -1,0 +1,36 @@
+---
+import { AUTHOR_NAME, GITHUB_URL, SITE_TITLE } from '../consts';
+
+const today = new Date();
+---
+
+<footer>
+	&copy; {today.getFullYear()} {AUTHOR_NAME} · {SITE_TITLE}
+	<div class="footer-links">
+		<a href="/about/">About</a>
+		<a href="/blog/">All posts</a>
+		<a href="/rss.xml">RSS</a>
+		<a href={GITHUB_URL} target="_blank" rel="me noopener">GitHub</a>
+	</div>
+</footer>
+<style>
+	footer {
+		padding: 2em 1em 6em 1em;
+		background: linear-gradient(var(--gray-gradient)) no-repeat;
+		color: rgb(var(--gray));
+		text-align: center;
+	}
+	.footer-links {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		gap: 1em;
+		margin-top: 1em;
+	}
+	.footer-links a {
+		color: rgb(var(--gray));
+	}
+	.footer-links a:hover {
+		color: rgb(var(--gray-dark));
+	}
+</style>

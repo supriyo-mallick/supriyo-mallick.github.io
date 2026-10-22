@@ -1,0 +1,145 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { AUTHOR_NAME, AUTHOR_URL, SITE_TITLE } from '../consts';
+import { tagSlug } from '../utils/posts';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage, heroAlt = '', tags = [] } = Astro.props;
+
+const pageURL = new URL(Astro.url.pathname, Astro.site).href;
+const schema = [
+	{
+		'@context': 'https://schema.org',
+		'@type': 'BlogPosting',
+		headline: title,
+		description,
+		datePublished: pubDate.toISOString(),
+		dateModified: (updatedDate ?? pubDate).toISOString(),
+		mainEntityOfPage: pageURL,
+		...(heroImage && { image: new URL(heroImage.src, Astro.site).href }),
+		...(tags.length && { keywords: tags.join(', ') }),
+		author: { '@type': 'Person', name: AUTHOR_NAME, url: new URL(AUTHOR_URL, Astro.site).href },
+		publisher: { '@type': 'Person', name: AUTHOR_NAME },
+	},
+	{
+		'@context': 'https://schema.org',
+		'@type': 'BreadcrumbList',
+		itemListElement: [
+			{ '@type': 'ListItem', position: 1, name: SITE_TITLE, item: new URL('/', Astro.site).href },
+			{ '@type': 'ListItem', position: 2, name: 'Blog', item: new URL('/blog/', Astro.site).href },
+			{ '@type': 'ListItem', position: 3, name: title, item: pageURL },
+		],
+	},
+];
+---
+
+<html lang="en">
+	<head>
+		<BaseHead
+			title={title}
+			description={description}
+			image={heroImage}
+			type="article"
+			publishedTime={pubDate}
+			modifiedTime={updatedDate}
+			schema={schema}
+		/>
+		<style>
+			main {
+				width: calc(100% - 2em);
+				max-width: 100%;
+				margin: 0;
+			}
+			.hero-image {
+				width: 100%;
+			}
+			.hero-image img {
+				display: block;
+				margin: 0 auto;
+				border-radius: 12px;
+				box-shadow: var(--box-shadow);
+			}
+			.prose {
+				width: 720px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+				padding: 1em;
+				color: rgb(var(--gray-dark));
+			}
+			.title {
+				margin-bottom: 1em;
+				padding: 1em 0;
+				text-align: center;
+				line-height: 1;
+			}
+			.title h1 {
+				margin: 0 0 0.5em 0;
+			}
+			.date {
+				margin-bottom: 0.5em;
+				color: rgb(var(--gray));
+			}
+			.last-updated-on {
+				font-style: italic;
+			}
+			.byline {
+				margin: 0;
+				color: rgb(var(--gray));
+			}
+			.tags {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: center;
+				gap: 0.5em;
+				margin-top: 1em;
+				line-height: 1.4;
+			}
+			.tags a {
+				padding: 0.15em 0.6em;
+				border-radius: 999px;
+				background: color-mix(in srgb, var(--accent) 10%, white);
+				font-size: 0.85em;
+				text-decoration: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<Header />
+		<main>
+			<article>
+				<div class="hero-image">
+					{heroImage && <Image width={1020} height={510} src={heroImage} alt={heroAlt} />}
+				</div>
+				<div class="prose">
+					<div class="title">
+						<div class="date">
+							<FormattedDate date={pubDate} />
+							{updatedDate && (
+								<div class="last-updated-on">
+									Last updated on <FormattedDate date={updatedDate} />
+								</div>
+							)}
+						</div>
+						<h1>{title}</h1>
+						<p class="byline">By <a href={AUTHOR_URL}>{AUTHOR_NAME}</a></p>
+						{tags.length > 0 && (
+							<div class="tags">
+								{tags.map((tag) => <a href={`/tags/${tagSlug(tag)}/`}>#{tag}</a>)}
+							</div>
+						)}
+						<hr />
+					</div>
+					<slot />
+				</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>

@@ -10,7 +10,7 @@ import { tagSlug } from '../utils/posts';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage, heroAlt = '', tags = [] } = Astro.props;
+const { title, seoTitle, description, pubDate, updatedDate, heroImage, heroAlt = '', tags = [] } = Astro.props;
 
 const pageURL = new URL(Astro.url.pathname, Astro.site).href;
 const schema = [
@@ -42,7 +42,7 @@ const schema = [
 <html lang="en">
 	<head>
 		<BaseHead
-			title={title}
+			title={seoTitle ?? title}
 			description={description}
 			image={heroImage}
 			type="article"

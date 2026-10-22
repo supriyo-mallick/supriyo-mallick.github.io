@@ -9,6 +9,8 @@ const blog = defineCollection({
 	schema: ({ image }) =>
 		z.object({
 			title: z.string(),
+			// Optional shorter title for Google results; defaults to `title`.
+			seoTitle: z.string().optional(),
 			// Shown in Google results: aim for 120-155 characters.
 			description: z.string(),
 			// Transform string to Date object

@@ -6,8 +6,6 @@ pubDate: '2026-10-22'
 heroImage: '../../assets/blog/gsc-ga4-report/cover.png'
 heroAlt: 'Stop copy-pasting GSC and GA4 data: build a combined SEO report in Google Sheets'
 tags: ['Google Apps Script', 'Google Search Console', 'GA4', 'SEO Reporting']
-# Before publishing: add the download links at the end and decide about the client name in the screenshots.
-draft: true
 ---
 
 Every SEO knows the routine. Export the Performance report from Google Search Console. Export the landing pages report from GA4. Paste both into a spreadsheet. Fight with trailing slashes, `www` and query strings so the URLs match. Write a VLOOKUP. Fix the VLOOKUP. Build the same report again next week.
@@ -109,7 +107,7 @@ Until the add-on launches (more on that at the end), the Performance Report runs
 **You'll need:**
 
 - A Google account with access to the **Search Console property** (any permission level) and/or **Viewer access to the GA4 property**.
-- The script file **`performance-report.gs`** and the manifest **`appsscript.json`** (download links at the end of this post).
+- The script file **[`performance-report.gs`](https://github.com/supriyo-mallick/supriyo-mallick.github.io/blob/main/public/downloads/performance-report.gs)** and the manifest **[`appsscript.json`](https://github.com/supriyo-mallick/supriyo-mallick.github.io/blob/main/public/downloads/appsscript.json)** (free, also linked at the end of this post).
 - A Google Cloud project. It's free and no billing account is needed.
 
 ### Step 1: Create the sheet and paste the script
@@ -280,4 +278,11 @@ The add-on is currently going through Google's verification process. **Until it'
 
 ---
 
-**Downloads:** [performance-report.gs → add your link] · [appsscript.json → add your link]
+## Download the files
+
+| File | What it is | Get it |
+| --- | --- | --- |
+| `performance-report.gs` | The Performance Report script (Step 1) | [View on GitHub](https://github.com/supriyo-mallick/supriyo-mallick.github.io/blob/main/public/downloads/performance-report.gs) · [Download](/downloads/performance-report.gs) |
+| `appsscript.json` | The permissions file (Step 2) | [View on GitHub](https://github.com/supriyo-mallick/supriyo-mallick.github.io/blob/main/public/downloads/appsscript.json) · [Download](/downloads/appsscript.json) |
+
+On GitHub, click the **Copy raw file** button (top right of the code) and paste it straight into Apps Script.
